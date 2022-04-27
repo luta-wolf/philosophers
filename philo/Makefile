@@ -1,10 +1,10 @@
 NAME	=	philo
 
-SRCS	=	src/philo.c
+SRCS	=	src/philo.c		src/philo_utils.c
 
 OBJ		=	$(SRCS:%.c=%.o)
 
-LIB		=	libft/libft.a
+# LIB		=	libft/libft.a
 
 INCLUDE	=	include/
 
@@ -30,11 +30,11 @@ END		=	\033[0m
 
 all:		libft $(NAME)
 
-libft:
-			@$(MAKE) -C libft/
+# libft:
+# 			@$(MAKE) -C libft/
 
 $(NAME):	$(OBJ)
-			$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
+			$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 			@echo "$(TURQUOISE)\n\t Complited $(NAME) \n$(END)"
 
 %.o:		%.c $(INCLUDE)$(HEADER)
@@ -42,11 +42,11 @@ $(NAME):	$(OBJ)
 
 clean:
 			@$(RM) $(OBJ) $(OBJ_B)
-			@$(MAKE) -C libft/ clean
+			# @$(MAKE) -C libft/ clean
 			@echo "$(BLUE)\n\tCleaning succeed\n$(END)"
 
 fclean:		clean
-			@$(MAKE) -C libft/ fclean
+			# @$(MAKE) -C libft/ fclean
 			@$(RM) $(NAME) $(NAME_B)
 			@echo "$(BLUE)\tAll files were deleted\n$(END)"
 
