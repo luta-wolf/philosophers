@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:17:17 by einterdi          #+#    #+#             */
-/*   Updated: 2022/04/27 03:28:17 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/05 07:37:53 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,52 +22,53 @@ int	check_arg(int ac, char **av)
 	// (void) av;
 	if (ac != 5 && ac != 6)
 	{
-		printf("Wrong number of arguments:  argc = %d\n", ac);
+		printf(RED "Error: " RESET "Wrong number of arguments:  argc = %d\n", ac);
 		return (1);
 	}
 	if(ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 ||
 		ft_atoi(av[3]) <= 0 || ft_atoi(av[4]) <= 0 ||
 		(ac == 6 && ft_atoi(av[5]) <= 0))
 	{
-		printf("Wrong arguments.\n");
+		printf(RED "Error: " RESET "Wrong arguments.\n");
 		return (1);
 	}
 	return (0);
 }
 
-t_arg	*init(int ac, char **av)
+t_table	*init(int ac, char **av)
 {
-	t_arg	*arg;
+	t_table	*arg;
 
-	arg = malloc(sizeof(t_arg));
+	arg = malloc(sizeof(t_table));
 	if (!arg)
 		return NULL;
 	arg->count_philo = ft_atoi(av[1]);
-	arg->time_die = ft_atoi(av[2]);
-	arg->time_eat = ft_atoi(av[3]);
-	arg->time_sleep = ft_atoi(av[4]);
-	arg->count_must_eat = 0;
+	arg->time_to_die = ft_atoi(av[2]);
+	arg->time_to_eat = ft_atoi(av[3]);
+	arg->time_to_sleep = ft_atoi(av[4]);
+	arg->count_of_lunch = 0;
 	if (ac == 6)
-		arg->count_must_eat = ft_atoi(av[5]);
+		arg->count_of_lunch = ft_atoi(av[5]);
 	return arg;
 }
 
-void	ft_printf(t_arg *all)
+void	ft_printf(t_table *all)
 {
 	printf("count_philo = %d\n", all->count_philo);
-	printf("time_die = %d\n", all->time_die);
-	printf("time_eat = %d\n", all->time_eat);
-	printf("time_sleep = %d\n", all->time_sleep);
-	printf("count_must_eat = %d\n", all->count_must_eat);
+	printf("time_die = %d\n", all->time_to_die);
+	printf("time_eat = %d\n", all->time_to_eat);
+	printf("time_sleep = %d\n", all->time_to_sleep);
+	printf("count_must_eat = %d\n", all->count_of_lunch);
 }
 
 int	main(int argc, char **argv)
 {
-	t_arg	*all;
+	t_table	*all;
 
 	if (check_arg(argc, argv))
 		return (1);
 	all = init(argc, argv);
 	ft_printf(all);
+
 	return (0);
 }
