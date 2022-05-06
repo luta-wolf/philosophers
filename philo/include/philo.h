@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/06 05:17:11 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:17:15 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_philo
 	int				left_fork;
 	int				right_fork;
 	size_t			last_eat;
-	struct s_arg	*arg;
+	struct s_table	*arg;
 }		t_philo;
 
 typedef struct s_table
@@ -47,6 +47,7 @@ typedef struct s_table
 	int				time_to_sleep;
 	int				count_of_lunch;
 	int				flag_of_death;
+	int				flag;
 	size_t			start;
 	pthread_t		*thread;
 	t_philo			*philo;

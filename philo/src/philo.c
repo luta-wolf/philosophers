@@ -6,38 +6,43 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:17:17 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/06 06:51:22 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/07 00:48:46 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	start_game(void	*arg)
+void	*start_game(void *tmp)
 {
-	t_philo	*philo;
+	t_philo		*philo;
 
-	philo = (t_philo *)arg;
-	while(1)
+	philo = (t_philo *)tmp;
+	while (philo->count_eat < philo->arg->count_of_lunch)
 	{
-		printf("(+)\n");
+		printf("philo %d %d\n", philo->id, philo->count_eat);
+		philo->count_eat++;
 	}
+
+	return NULL;
 }
 
-void	philo_life(t_table *all)
+int	philo_life(t_table *all)
 {
 	int i;
 
 	i = 0;
-	all->start = get_timestamp();
 	while (i < all->count_philo)
 	{
-		if (all->philo->id % 2 == 0)
-			ft_usleep(100);
-		all->philo[i].last_eat = get_timestamp();
-		// pthread_create(&all->thread[i], NULL, start_game, (void *)&all->philo[i]);
+		pthread_create(&all->thread[i], NULL, &start_game, &all->philo[i]);
 		i++;
 	}
-
+	i = 0;
+	while (i < all->count_philo)
+	{
+		pthread_join(all->thread[i], NULL);
+		i++;
+	}
+	return 0;
 }
 
 void	ft_printf(t_table *all)
@@ -63,8 +68,13 @@ int	main(int argc, char **argv)
 	if (init_philo(all))
 		return (ft_free(all));
 	philo_life(all);
+	// for (int i = 0; i < all->count_philo; i++)
+	// 	printf("[%p] %3d [%p] [%p]\n",
+	// 		all->philo[i].arg, all->philo[i].id,
+	// 			&all->philo[i].arg->fork[all->philo[i].right_fork],
+	// 			&all->philo[i].arg->fork[all->philo[i].left_fork]);
 	ft_destroy_mutex(all);
 	ft_free(all);
-	ft_printf(all);
+	// ft_printf(all);
 	return (0);
 }
