@@ -6,20 +6,19 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/05 07:08:29 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/06 05:17:11 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-// # include "../libft/libft.h"
 # include <unistd.h> // usleep, write
 # include <stdio.h> // printf
 # include <string.h> // memset
 # include <stdlib.h> // malloc, free
 # include <sys/time.h> // gettimeofday
-# include <pthread.h> //pthread_create, pthread_detach, pthread_join, pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
+# include <pthread.h> //pthread_create
 
 # define RED    "\x1b[31m"
 # define BLU    "\x1B[34m"
@@ -30,9 +29,9 @@
 # define WHT    "\x1B[37m"
 # define RESET  "\x1B[0m"
 
-typedef	struct s_philo
+typedef struct s_philo
 {
-	int 			id;
+	int				id;
 	int				count_eat;
 	int				left_fork;
 	int				right_fork;
@@ -55,12 +54,17 @@ typedef struct s_table
 	pthread_mutex_t	print;
 }		t_table;
 
-
-
 // philo_utils.c
 long long	ft_atoi(const char *str);
 size_t		get_timestamp(void);
 int			ft_usleep(size_t m_sec);
+int			ft_free(t_table *all);
+void		ft_destroy_mutex(t_table *all);
 
+//philo_init.c
+int			check_arg(int ac, char **av);
+t_table		*init_table(int ac, char **av);
+int			malloc_time(t_table *all);
+int			init_philo(t_table *all);
 
 #endif

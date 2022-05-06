@@ -6,50 +6,38 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:17:17 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/05 07:37:53 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/06 06:51:22 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-//(!(ac == 5 || ac == 6))
-int	check_arg(int ac, char **av)
+
+void	start_game(void	*arg)
 {
-	// pthread_t thread[4];
-	// pthread_t *thrd;
-	// thrd = malloc(pthread_t * argv[1]);
-	// pthread_mutex_t forks[4];
-	// t_philosopher filosophers[4];
-	// (void) av;
-	if (ac != 5 && ac != 6)
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	while(1)
 	{
-		printf(RED "Error: " RESET "Wrong number of arguments:  argc = %d\n", ac);
-		return (1);
+		printf("(+)\n");
 	}
-	if(ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 ||
-		ft_atoi(av[3]) <= 0 || ft_atoi(av[4]) <= 0 ||
-		(ac == 6 && ft_atoi(av[5]) <= 0))
-	{
-		printf(RED "Error: " RESET "Wrong arguments.\n");
-		return (1);
-	}
-	return (0);
 }
 
-t_table	*init(int ac, char **av)
+void	philo_life(t_table *all)
 {
-	t_table	*arg;
+	int i;
 
-	arg = malloc(sizeof(t_table));
-	if (!arg)
-		return NULL;
-	arg->count_philo = ft_atoi(av[1]);
-	arg->time_to_die = ft_atoi(av[2]);
-	arg->time_to_eat = ft_atoi(av[3]);
-	arg->time_to_sleep = ft_atoi(av[4]);
-	arg->count_of_lunch = 0;
-	if (ac == 6)
-		arg->count_of_lunch = ft_atoi(av[5]);
-	return arg;
+	i = 0;
+	all->start = get_timestamp();
+	while (i < all->count_philo)
+	{
+		if (all->philo->id % 2 == 0)
+			ft_usleep(100);
+		all->philo[i].last_eat = get_timestamp();
+		// pthread_create(&all->thread[i], NULL, start_game, (void *)&all->philo[i]);
+		i++;
+	}
+
 }
 
 void	ft_printf(t_table *all)
@@ -67,8 +55,16 @@ int	main(int argc, char **argv)
 
 	if (check_arg(argc, argv))
 		return (1);
-	all = init(argc, argv);
+	all = init_table(argc, argv);
+	if (!all)
+		return (ft_free(all));
+	if (malloc_time(all))
+		return (ft_free(all));
+	if (init_philo(all))
+		return (ft_free(all));
+	philo_life(all);
+	ft_destroy_mutex(all);
+	ft_free(all);
 	ft_printf(all);
-
 	return (0);
 }

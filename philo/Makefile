@@ -1,6 +1,6 @@
 NAME	=	philo
 
-SRCS	=	src/philo.c		src/philo_utils.c
+SRCS	=	src/philo.c		src/philo_utils.c	src/philo_init.c
 
 OBJ		=	$(SRCS:%.c=%.o)
 
@@ -24,6 +24,7 @@ GRN		=	\033[32m
 GRN_B	=	\033[1;32m
 WHT		=	\x1B[37m
 PUPURE	=	\033[1;35m
+MAG		=	\x1B[35m
 GRY		=	\033[1;30m
 TURQUOISE =	\033[36;1m
 END		=	\033[0m
@@ -54,12 +55,12 @@ $(NAME):	$(OBJ)
 clean:
 			@$(RM) $(OBJ) $(OBJ_B)
 # @$(MAKE) -C libft/ clean
-			@echo "$(BLUE)\n\tCleaning succeed\n$(END)"
+			@echo "$(BLUE)\n\tCleaning $(NAME) succeed \n$(END)"
 
 fclean:		clean
 # @$(MAKE) -C libft/ fclean
 			@$(RM) $(NAME) $(NAME_B)
-			@echo "$(BLUE)\tAll files were deleted\n$(END)"
+			@echo "$(BLUE)\tDeleting $(NAME) succeed\n$(END)"
 
 re:			fclean all
 			@echo "$(BLUE)\tRemake done\n$(END)"
