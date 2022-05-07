@@ -1,6 +1,7 @@
 NAME	=	philo
 
-SRCS	=	src/philo.c		src/philo_utils.c	src/philo_init.c
+SRCS	=	src/philo.c		src/philo_utils.c	src/philo_init.c \
+			src/philo_life.c
 
 OBJ		=	$(SRCS:%.c=%.o)
 

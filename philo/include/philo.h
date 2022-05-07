@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/06 18:17:15 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/07 07:11:38 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@
 typedef struct s_philo
 {
 	int				id;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	int				count_eat;
 	int				left_fork;
 	int				right_fork;
+	size_t			time_start;
 	size_t			last_eat;
 	struct s_table	*arg;
 }		t_philo;
@@ -47,12 +51,11 @@ typedef struct s_table
 	int				time_to_sleep;
 	int				count_of_lunch;
 	int				flag_of_death;
-	int				flag;
-	size_t			start;
+	size_t			time_start;
 	pthread_t		*thread;
-	t_philo			*philo;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
+	t_philo			*philo;
 }		t_table;
 
 // philo_utils.c
@@ -67,5 +70,11 @@ int			check_arg(int ac, char **av);
 t_table		*init_table(int ac, char **av);
 int			malloc_time(t_table *all);
 int			init_philo(t_table *all);
+
+//philo_life.c
+void		philo_print(t_table	*table, t_philo *philo, char *str);
+void		philo_eating(t_table	*table, t_philo *philo);
+void		philo_sleeping(t_table *table, t_philo *philo);
+void		philo_thinking(t_table *table, t_philo *philo);
 
 #endif

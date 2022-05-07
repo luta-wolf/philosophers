@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 02:23:41 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/06 21:52:13 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/07 06:58:35 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ t_table	*init_table(int ac, char **av)
 	arg->time_to_eat = ft_atoi(av[3]);
 	arg->time_to_sleep = ft_atoi(av[4]);
 	arg->count_of_lunch = 0;
-	arg->flag = 0;
 	if (ac == 6)
-	{
 		arg->count_of_lunch = ft_atoi(av[5]);
-		arg->flag = 1;
-	}
 	arg->flag_of_death = 0;
-	arg->start = 0;
+	arg->time_start = 0;
 	pthread_mutex_init(&arg->print, NULL);
 	arg->thread = NULL;
 	arg->philo = NULL;
@@ -78,6 +74,9 @@ int	init_philo(t_table *all)
 	while (i < all->count_philo)
 	{
 		all->philo[i].id = i + 1;
+		all->philo[i].time_to_die = all->time_to_die;
+		all->philo[i].time_to_eat = all->time_to_eat;
+		all->philo[i].time_to_sleep = all->time_to_sleep;
 		all->philo[i].count_eat = 0;
 		all->philo[i].left_fork = i;
 		if (i < all->count_philo -1)
