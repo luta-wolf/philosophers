@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/07 07:11:38 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/07 09:08:50 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_philo
 	int				count_eat;
 	int				left_fork;
 	int				right_fork;
-	size_t			time_start;
-	size_t			last_eat;
+	long long		time_start;
+	long long		last_eat;
 	struct s_table	*arg;
 }		t_philo;
 
@@ -51,7 +51,7 @@ typedef struct s_table
 	int				time_to_sleep;
 	int				count_of_lunch;
 	int				flag_of_death;
-	size_t			time_start;
+	long long		time_start;
 	pthread_t		*thread;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
@@ -60,8 +60,8 @@ typedef struct s_table
 
 // philo_utils.c
 long long	ft_atoi(const char *str);
-size_t		get_timestamp(void);
-int			ft_usleep(size_t m_sec);
+long long	get_timestamp(void);
+long long	ft_usleep(long long m_sec);
 int			ft_free(t_table *all);
 void		ft_destroy_mutex(t_table *all);
 

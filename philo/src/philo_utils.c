@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:46:01 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/06 05:15:35 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/07 09:13:15 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ long long	ft_atoi(const char *str)
 	return (nbr * flag);
 }
 
-size_t	get_timestamp(void)
+long long	get_timestamp(void)
 {
 	struct timeval	t;
-	size_t			now;
+	long long		now;
 
 	gettimeofday (&t, NULL);
 	now = ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 	return (now);
 }
 
-int	ft_usleep(size_t m_sec)
+long long	ft_usleep(long long m_sec)
 {
-	size_t	start;
+	long long	start;
 
 	start = get_timestamp();
 	while (1)
