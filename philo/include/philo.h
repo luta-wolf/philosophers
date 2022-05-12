@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/07 09:08:50 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 10:24:24 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_table
 // philo_utils.c
 long long	ft_atoi(const char *str);
 long long	get_timestamp(void);
-long long	ft_usleep(long long m_sec);
+void		ft_usleep(long long time);
 int			ft_free(t_table *all);
 void		ft_destroy_mutex(t_table *all);
 

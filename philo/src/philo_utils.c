@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:46:01 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/07 09:13:15 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/10 19:53:18 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,13 @@ long long	get_timestamp(void)
 	return (now);
 }
 
-long long	ft_usleep(long long m_sec)
+void	ft_usleep(long long time)
 {
 	long long	start;
 
 	start = get_timestamp();
-	while (1)
-	{
-		if (get_timestamp() - start >= m_sec)
-			return (0);
-	}
-	return (0);
+	while (get_timestamp() - start < time)
+		usleep(100);
 }
 
 int	ft_free(t_table *all)
@@ -81,6 +77,7 @@ void	ft_destroy_mutex(t_table *all)
 	int	i;
 
 	i = 0;
+	pthread_mutex_unlock(&all->print);
 	while (i < all->count_philo)
 		pthread_mutex_destroy(&all->fork[i++]);
 	pthread_mutex_destroy(&all->print);
