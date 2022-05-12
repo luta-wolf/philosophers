@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:17:17 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/12 15:41:35 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:55:51 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	*death_is_near(void *tmp)
 			if (get_timestamp() - p[i].last_eat > p[i].time_to_die)
 			{
 				all->flag_of_death = 1;
-				philo_print(all, &all->philo[i], RED "is died" RESET);
+				pthread_mutex_lock(&all->print);
+				printf("%lld %d" YEL " is died\n",
+					get_timestamp() - p->time_start, p->id);
 				return (NULL);
 			}
 		}
@@ -56,7 +58,8 @@ void	*start_game(void *tmp)
 		if (table->count_of_lunch)
 			if (philo->count_eat == table->count_of_lunch)
 				return (NULL);
-		philo_eating(table, philo);
+		if (philo_eating(table, philo))
+			return (NULL);
 		philo_sleeping(table, philo);
 		philo_thinking(table, philo);
 	}
@@ -77,12 +80,13 @@ int	philo_life(t_table *all)
 	}
 	i = -1;
 	while (++i < all->count_philo)
-	{
 		pthread_create(&all->thread[i], NULL, &start_game, &all->philo[i]);
-		pthread_detach(all->thread[i]);
-	}
 	pthread_create(&check, NULL, &death_is_near, all);
+	pthread_mutex_unlock(&all->print);
 	pthread_join(check, NULL);
+	i = -1;
+	while (++i < all->count_philo)
+		pthread_join(all->thread[i], NULL);
 	return (0);
 }
 
@@ -100,6 +104,7 @@ int	main(int argc, char **argv)
 	if (init_philo(all))
 		return (ft_free(all));
 	philo_life(all);
+	ft_destroy_mutex(all);
 	ft_free(all);
 	return (0);
 }

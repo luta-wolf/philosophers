@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/12 10:24:24 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 20:21:37 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			init_philo(t_table *all);
 
 //philo_life.c
 void		philo_print(t_table	*table, t_philo *philo, char *str);
-void		philo_eating(t_table	*table, t_philo *philo);
+int			philo_eating(t_table *table, t_philo *philo);
 void		philo_sleeping(t_table *table, t_philo *philo);
 void		philo_thinking(t_table *table, t_philo *philo);
 

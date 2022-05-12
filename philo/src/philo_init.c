@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 02:23:41 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/08 07:24:41 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 18:58:37 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	init_philo(t_table *all)
 		all->philo[i].time_to_sleep = all->time_to_sleep;
 		all->philo[i].count_eat = 0;
 		all->philo[i].left_fork = i;
-		if (i < all->count_philo -1)
+		if (i < all->count_philo - 1)
 			all->philo[i].right_fork = i + 1;
 		else
 			all->philo[i].right_fork = 0;
