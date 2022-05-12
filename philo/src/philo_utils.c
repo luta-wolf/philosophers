@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 01:46:01 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/10 19:53:18 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:41:27 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ void	ft_usleep(long long time)
 
 int	ft_free(t_table *all)
 {
+	int	i;
+
+	i = 0;
+	while (i < all->count_philo)
+		pthread_mutex_destroy(&all->fork[i++]);
+	pthread_mutex_destroy(&all->print);
 	if (all->philo)
 		free(all->philo);
 	if (all->fork)
@@ -70,15 +76,4 @@ int	ft_free(t_table *all)
 		free(all->thread);
 	free(all);
 	return (1);
-}
-
-void	ft_destroy_mutex(t_table *all)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_unlock(&all->print);
-	while (i < all->count_philo)
-		pthread_mutex_destroy(&all->fork[i++]);
-	pthread_mutex_destroy(&all->print);
 }

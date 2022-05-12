@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:17:17 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/12 10:30:47 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:41:35 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	philo_life(t_table *all)
 		pthread_create(&all->thread[i], NULL, &start_game, &all->philo[i]);
 		pthread_detach(all->thread[i]);
 	}
-	i = -1;
 	pthread_create(&check, NULL, &death_is_near, all);
 	pthread_join(check, NULL);
 	return (0);
@@ -101,7 +100,6 @@ int	main(int argc, char **argv)
 	if (init_philo(all))
 		return (ft_free(all));
 	philo_life(all);
-	ft_destroy_mutex(all);
 	ft_free(all);
 	return (0);
 }
