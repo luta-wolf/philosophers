@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: einterdi <einterdi@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 22:23:50 by einterdi          #+#    #+#             */
-/*   Updated: 2021/10/14 19:44:10 by einterdi         ###   ########.fr       */
+/*   Created: 2022/05/13 19:52:12 by einterdi          #+#    #+#             */
+/*   Updated: 2022/05/14 12:53:53 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo_bonus.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	main(int argc, char **argv)
 {
-	unsigned char	*str;
+	t_philo	*all;
 
-	str = (unsigned char *)s;
-	while (n != 0)
-	{
-		if (*str == (unsigned char)c)
-			return (str);
-		n--;
-		str++;
-	}
-	return (NULL);
+	if (check_arg(argc, argv))
+		return (1);
+	all = init_table(argc, argv);
+
+
+	return (0);
 }

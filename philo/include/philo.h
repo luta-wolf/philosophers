@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/12 20:21:37 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/13 19:28:41 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,8 @@ void		philo_sleeping(t_table *table, t_philo *philo);
 void		philo_thinking(t_table *table, t_philo *philo);
 
 #endif
+
+// 21 290 100 100
+// 50 210 100 100
+// 199 2000 600 60
+// time ./philo ... - исполняемый файл должен исполняться столько, сколько жил философ, который умер.

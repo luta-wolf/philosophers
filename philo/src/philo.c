@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:17:17 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/12 20:55:51 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/14 16:27:17 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*death_is_near(void *tmp)
 			{
 				all->flag_of_death = 1;
 				pthread_mutex_lock(&all->print);
-				printf("%lld %d" YEL " is died\n",
+				printf("%lld %d" YEL " is died"RESET"\n",
 					get_timestamp() - p->time_start, p->id);
 				return (NULL);
 			}

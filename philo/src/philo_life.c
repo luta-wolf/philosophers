@@ -6,19 +6,11 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 05:30:13 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/12 20:53:08 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/12 21:17:24 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// void	philo_print(t_table	*table, t_philo *philo, char *str)
-// {
-// 	pthread_mutex_lock(&table->print);
-// 	printf("%lld %d %s\n",
-// 		get_timestamp() - philo->time_start, philo->id, str);
-// 	pthread_mutex_unlock(&table->print);
-// }
 
 void	philo_print(t_table	*table, t_philo *philo, char *str)
 {

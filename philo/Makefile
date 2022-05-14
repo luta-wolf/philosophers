@@ -13,7 +13,7 @@ HEADER	=	philo.h
 
 CC		=	gcc
 
-FLAGS	=	-Wall -Wextra -Werror
+FLAGS	=	-g -Wall -Wextra -Werror #-fsanitize=thread
 
 RM		= rm -rf
 

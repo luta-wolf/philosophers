@@ -1,27 +1,13 @@
-NAME	=	push_swap
+NAME	=	philo_bonus
 
-NAME_B	=	checker
-
-SRCS	=	src/push_swap.c	src/parser_init.c	src/parser_add.c \
-			src/cmd_push.c	src/ps_print.c 		src/parser_check.c \
-			src/cmd_swap.c	src/cmd_rotate.c	src/cmd_reverse.c \
-			src/sort_big.c	src/sort_med.c		src/sort_optima.c \
-			src/sort_min.c
-
-SRCS_B	=	src/cheker.c		src/parser_check.c \
-			src/parser_init.c 	src/parser_add.c 	src/cmd_push.c \
-			src/cmd_swap.c		src/cmd_rotate.c 	src/cmd_reverse.c \
-			src/sort_big.c		src/sort_med.c		src/sort_min.c
+SRCS	=	src/philo_bonus.c		src/philo_bonus_utils.c	\
+			src/philo_bonus_init.c	#src/philo_bonus_life.c
 
 OBJ		=	$(SRCS:%.c=%.o)
 
-OBJ_B	=	$(SRCS_B:%.c=%.o)
-
-LIB		=	libft/libft.a
-
 INCLUDE	=	include/
 
-HEADER	=	push_swap.h
+HEADER	=	philo_bonus.h
 
 CC		=	gcc
 
@@ -33,39 +19,42 @@ RM		= rm -rf
 RED		=	\033[1;31m
 BLUE	=	\033[1;34m
 YELLOW	=	\033[1;33m
-WHITE	=	\033[1;32m
+GRN		=	\033[32m
+GRN_B	=	\033[1;32m
+WHT		=	\x1B[37m
 PUPURE	=	\033[1;35m
+MAG		=	\x1B[35m
 GRY		=	\033[1;30m
 TURQUOISE =	\033[36;1m
 END		=	\033[0m
+
+# define RED    "\x1b[31m"
+# define BLU    "\x1B[34m"
+# define GRN    "\x1B[32m"
+# define YEL    "\x1B[33m"
+# define MAG    "\x1B[35m"
+# define CYN    "\x1B[36m"
+# define WHT    "\x1B[37m"
+
 #---------------------------------------------------------------------------------
-.PHONY:		all	clean	fclean	re	bonus	libft
+.PHONY:		all	clean	fclean	re
 
-all:		libft $(NAME)
-
-libft:
-			@$(MAKE) -C libft/
+all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
-			@echo "$(TURQUOISE)\n\t Complited $(NAME) \n$(END)"
+			$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+			@echo "$(GRN)\n\t $(NAME) is complited  \n$(END)"
 
 %.o:		%.c $(INCLUDE)$(HEADER)
 			$(CC) $(FLAGS)  -c $< -o $@ -I $(INCLUDE)
 
-bonus:		libft $(OBJ_B)
-			$(CC) $(FLAGS) $(OBJ_B) $(LIB) -o $(NAME_B)
-			@echo "$(TURQUOISE)\n\tComplited $(NAME_B) \n$(END)"
-
 clean:
 			@$(RM) $(OBJ) $(OBJ_B)
-			@$(MAKE) -C libft/ clean
-			@echo "$(BLUE)\n\tCleaning succeed\n$(END)"
+			@echo "$(BLUE)\n\tCleaning $(NAME) succeed \n$(END)"
 
 fclean:		clean
-			@$(MAKE) -C libft/ fclean
 			@$(RM) $(NAME) $(NAME_B)
-			@echo "$(BLUE)\tAll files were deleted\n$(END)"
+			@echo "$(BLUE)\tDeleting $(NAME) succeed\n$(END)"
 
 re:			fclean all
 			@echo "$(BLUE)\tRemake done\n$(END)"
