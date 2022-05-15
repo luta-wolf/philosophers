@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/14 13:09:34 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/15 13:25:21 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,25 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nbr_lunch;
-	int				left_fork;
-	int				right_fork;
+	int				nbr_fork;
+	int				nbr_philo_eat;
 	int				flag_of_death;
 	long long		time_start;
 	long long		time_last_eat;
-	int				*pid;
+	pid_t			*pid;
 	pthread_t		observer;
-	sem_t			*print;
-	sem_t			*fork;
+	sem_t			*sem_print;
+	sem_t			*sem_fork;
 }					t_philo;
 
 //philo_bonus_init.c
-int	check_arg(int ac, char **av);
+int			check_arg(int ac, char **av);
+t_philo		*init_table(int ac, char **av);
+int			init_sem_pid(t_philo *all);
 
 //philo_bonus_utils.c
 long long	ft_atoi(const char *str);
 int			print_error(int code);
+void	ft_free(t_philo *all);
 
 #endif

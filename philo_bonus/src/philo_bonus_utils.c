@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 08:08:50 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/13 12:02:55 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/15 13:28:13 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,20 @@ int	print_error(int code)
 		printf("wrong number of arguments.\n");
 	else if (code == 2)
 		printf("arguments are not correct.\n");
+	else if (code == 3)
+		printf("malloc allocation error.\n");
+	else if (code == 4)
+		printf("semafor creation error.\n");
 	return (1);
 }
+
+void	ft_free(t_philo *all)
+{
+	sem_unlink("print");
+	sem_unlink("fork");
+	sem_close(all->sem_print);
+	sem_close(all->sem_fork);
+	free(all->pid);
+	free(all);
+}
+
