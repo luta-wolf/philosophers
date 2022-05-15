@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 19:52:12 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/15 20:00:28 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/15 20:45:49 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ int	philo_life(t_philo *all)
 		if (all->nbr_lunch)
 			if (all->nbr_philo_eat == all->nbr_lunch)
 				break ;
-		if (philo_eating(all))
+		if (philo_eat_sleep_think(all))
 			break ;
-		philo_sleeping(all);
-		philo_thinking(all);
 	}
 	if (pthread_join(all->track_death, NULL))
 		return (print_error(7));
