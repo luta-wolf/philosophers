@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 08:12:28 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/15 13:32:10 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/15 20:01:01 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_arg(int ac, char **av)
 	return (0);
 }
 
-t_philo	*init_table(int ac, char **av)
+t_philo	*init_philo(int ac, char **av)
 {
 	t_philo	*all;
 
@@ -37,7 +37,7 @@ t_philo	*init_table(int ac, char **av)
 	all->nbr_lunch = 0;
 	if (ac == 6)
 		all->nbr_lunch = ft_atoi(av[5]);
-	all->nbr_fork = all->nbr_philo;
+	all->name = 0;
 	all->nbr_philo_eat = 0;
 	all->flag_of_death = 0;
 	all->time_start = 0;
@@ -58,17 +58,16 @@ int	init_sem_pid(t_philo *all)
 	sem_unlink("fork");
 	all->sem_print = sem_open("print", O_CREAT, 0644, 1);
 	if (all->sem_print == SEM_FAILED)
-		small_free(all, 4);
+		return (small_free(all, 4));
 	all->sem_fork = sem_open("fork", O_CREAT, 0644, all->nbr_philo);
 	if (all->sem_fork == SEM_FAILED)
-		small_free(all, 4);
+		return (small_free(all, 4));
 	all->pid = malloc(sizeof(pid_t) * all->nbr_philo);
 	if (!all->pid)
 	{
 		sem_close(all->sem_print);
 		sem_close(all->sem_fork);
-		small_free(all, 3);
+		return (small_free(all, 3));
 	}
-	return(0);
+	return (0);
 }
-

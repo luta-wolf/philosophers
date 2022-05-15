@@ -8,6 +8,4 @@ Philosophers -
 - Структура процессов http://citforum.ru/operating_systems/bach/glava_56.shtml
 - У Столярова об обедающих философах pdf (Лекция 13, страница 162) - http://www.stolyarov.info/books/pdf/osintro.
 - Philosophers visualizer - https://nafuka11.github.io/philosophers-visualizer/
-Тесты:
-- 1 https://github.com/nesvoboda/socrates
-- 2 https://github.com/cacharle/philosophers_test
+

@@ -1,7 +1,7 @@
 NAME	=	philo_bonus
 
 SRCS	=	src/philo_bonus.c		src/philo_bonus_utils.c	\
-			src/philo_bonus_init.c	#src/philo_bonus_life.c
+			src/philo_bonus_init.c	src/philo_bonus_life.c
 
 OBJ		=	$(SRCS:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 08:08:50 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/15 13:28:13 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/15 20:02:12 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,25 @@ long long	ft_atoi(const char *str)
 	return (nbr * flag);
 }
 
+long long	get_timestamp(void)
+{
+	struct timeval	t;
+	long long		now;
+
+	gettimeofday (&t, NULL);
+	now = ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+	return (now);
+}
+
+void	ft_usleep(long long time)
+{
+	long long	start;
+
+	start = get_timestamp();
+	while (get_timestamp() - start < time)
+		usleep(100);
+}
+
 int	print_error(int code)
 {
 	printf(RED "Error: " RESET);
@@ -52,11 +71,22 @@ int	print_error(int code)
 		printf("malloc allocation error.\n");
 	else if (code == 4)
 		printf("semafor creation error.\n");
+	else if (code == 5)
+		printf("error when forking.\n");
+	else if (code == 6)
+		printf("failed to create the thread.\n");
+	else if (code == 7)
+		printf("failed to join the thread.\n");
 	return (1);
 }
 
 void	ft_free(t_philo *all)
 {
+	int	i;
+
+	i = -1;
+	while (++i < all->nbr_philo)
+		kill(all->pid[i], SIGKILL);
 	sem_unlink("print");
 	sem_unlink("fork");
 	sem_close(all->sem_print);
@@ -64,4 +94,3 @@ void	ft_free(t_philo *all)
 	free(all->pid);
 	free(all);
 }
-
