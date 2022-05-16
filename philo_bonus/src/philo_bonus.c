@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 19:52:12 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/15 21:07:40 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:07:21 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	start_game(t_philo *all)
 	while (waitpid(-1, &status, 0) > 0)
 	{
 		if (WEXITSTATUS(status) == 1)
-			return (ft_free(all), 1);
+			return (killer(all));
 	}
 	return (0);
 }

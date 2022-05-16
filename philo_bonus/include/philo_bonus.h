@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/15 20:46:28 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:06:28 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void		ft_free(t_philo *all);
 // philo_bonus_life.c
 void		philo_print(t_philo *all, char *str);
 int			philo_eat_sleep_think(t_philo *all);
+int			killer(t_philo *all);
 #endif

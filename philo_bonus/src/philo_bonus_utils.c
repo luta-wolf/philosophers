@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 08:08:50 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/15 21:07:44 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/16 12:17:02 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	print_error(int code)
 	else if (code == 4)
 		printf("semafor creation error.\n");
 	else if (code == 5)
-		printf("error when forking.\n");
+		printf("fork error.\n");
 	else if (code == 6)
 		printf("failed to create the thread.\n");
 	else if (code == 7)
@@ -82,11 +82,6 @@ int	print_error(int code)
 
 void	ft_free(t_philo *all)
 {
-	int	i;
-
-	i = -1;
-	while (++i < all->nbr_philo)
-		kill(all->pid[i], SIGKILL);
 	sem_unlink("print");
 	sem_unlink("fork");
 	sem_close(all->sem_print);
