@@ -6,7 +6,7 @@
 /*   By: einterdi <einterdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:44:03 by einterdi          #+#    #+#             */
-/*   Updated: 2022/05/16 12:06:28 by einterdi         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:17:53 by einterdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,6 @@ void		philo_print(t_philo *all, char *str);
 int			philo_eat_sleep_think(t_philo *all);
 int			killer(t_philo *all);
 #endif
+
+// ./philo_bonus 5 800 200 200 7 | grep eat | wc -l
+// проверить сколько раз философы поели
