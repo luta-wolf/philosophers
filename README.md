@@ -115,6 +115,7 @@
 - Цикл лекций по потокам и процессам [Unix Threads in C](https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2) от CodeVault.
 - У Столярова "Программирование: введение в профессию" [том 2](http://www.stolyarov.info/books/pdf/progintro_dmkv2.pdf) глава 7, страница 516 и "Введение в операционные системы" [лекция 13, страница 162](http://www.stolyarov.info/books/pdf/osintro.pdf)
 - Статьи по [дедлоку](https://learnc.info/c/pthreads_deadlock.html), по [потокам](https://habr.com/ru/post/326138/), по [структуре процессов](http://citforum.ru/operating_systems/bach/glava_56.shtml).
+- Про [гонку данных](https://medium.com/german-gorelkin/race-8936927dba20)
 
 P.S.
 ---
